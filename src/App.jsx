@@ -1,7 +1,7 @@
 
 import heroImg from './assets/hero.png'
 import './App.css'
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Main from './components/Main'
 import SignIn from './components/SignIn'
 import Header from './layouts/Header'
@@ -15,7 +15,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 로그인한 사용자 ID 관리
-  const [ username, setUsername ] = useState('');
+  const [username, setUsername] = useState('');
 
   // 로그인 핸들러
   const handleLogin = (username) => {
@@ -31,26 +31,26 @@ function App() {
   return (
     <>
       <section className="app">
-      <BrowserRouter>
-        {/* 헤더 영역 */}
-        <Header 
-          isLoggedIn={isLoggedIn}
-          username={username}
-          onLogout={handleLogout}
-        />
+        <BrowserRouter basename='/product-shop/'>
+          {/* 헤더 영역 */}
+          <Header
+            isLoggedIn={isLoggedIn}
+            username={username}
+            onLogout={handleLogout}
+          />
 
-        {/* 본문 영역 */}
-        <div className='contents'>
-          <Routes>
-            <Route path='/' element={<Main />} />
-            <Route path='/products' element={<ProductList />} />
-            {/* :id -> URL에서 동적으로 변하는 부분을 나타냄 */}
-            {/* 예) /products/2 */}
-            <Route path='/products/:id' element={<ProductInfo />} />
-            <Route path='/add-product' element={<AddProduct />} />
-            <Route path='/sign-in' element={<SignIn onLogin={handleLogin} />} />
-          </Routes>
-        </div>
+          {/* 본문 영역 */}
+          <div className='contents'>
+            <Routes>
+              <Route path='/' element={<Main />} />
+              <Route path='/products' element={<ProductList />} />
+              {/* :id -> URL에서 동적으로 변하는 부분을 나타냄 */}
+              {/* 예) /products/2 */}
+              <Route path='/products/:id' element={<ProductInfo />} />
+              <Route path='/add-product' element={<AddProduct />} />
+              <Route path='/sign-in' element={<SignIn onLogin={handleLogin} />} />
+            </Routes>
+          </div>
         </BrowserRouter>
       </section>
     </>
