@@ -18,7 +18,7 @@ const SignIn = ({ onLogin }) => {
   // 입력 필드 변경 핸들러
   const handleInputChange = (e) => {
     // e.target.value - 값, e.target.name - 속성
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     // console.log(e);
 
     //속성의 변경된 값을 업데이트 함
@@ -33,7 +33,7 @@ const SignIn = ({ onLogin }) => {
     e.preventDefault();  //기본 동작을 막음
     console.log("전송 데이터:", formData);
 
-    const {username, password} = formData;
+    const { username, password } = formData;
 
     //데이터 일치 여부 판단 - find() 사용
     //외부에서 입력한 id, password 저장된 임시데이터를 비교
@@ -43,23 +43,23 @@ const SignIn = ({ onLogin }) => {
 
     //로그인 성공여부에 따라 결과 상태 업데이트
     // setResult(matched ? 'success' : 'fail');
-    if(matched){ //로그인 성공시
+    if (matched) { //로그인 성공시
       setResult('success');
       onLogin(username); //App에 로그인 정보 전달
       navigate('/'); //Home으로 이동
-    }else{
+    } else {
       setResult('fail')
     }
   }
 
-  return(
+  return (
     <div>
       <h2>로그인</h2>
       {/* 폼 태그 사용 */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="signin-form">
         <p>
-          <input 
-            type="text" 
+          <input
+            type="text"
             name="username"
             value={formData.username}
             onChange={handleInputChange}
@@ -67,8 +67,8 @@ const SignIn = ({ onLogin }) => {
           />
         </p>
         <p>
-          <input 
-            type="password" 
+          <input
+            type="password"
             name="password"
             value={formData.password}
             onChange={handleInputChange}
@@ -80,7 +80,7 @@ const SignIn = ({ onLogin }) => {
       </form>
       {/* 결과 메시지 출력 */}
       {result === 'fail' && (
-        <p style={{color: 'red'}}>아이디 또는 비밀번호가 일치하지 않습니다.</p>
+        <p style={{ color: 'red' }}>아이디 또는 비밀번호가 일치하지 않습니다.</p>
       )}
     </div>
   )
